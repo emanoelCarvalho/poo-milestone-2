@@ -39,7 +39,11 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void sacar(BigDecimal valor) {
-        
+        if(isStatus() && valor.compareTo(this.saldo) <= 0) {
+        	this.saldo = saldo.subtract(valor); 
+        } else {
+			System.out.println("Operação inválida");
+		}
     }
 
     /*

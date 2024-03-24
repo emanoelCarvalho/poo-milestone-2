@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /*
  * Programação Orientada a Objetos
  * Milestone 2
- * Discente:
+ * Discente: Emanoel Carvalho
  * 
  */
 public class Cliente {
