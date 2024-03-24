@@ -28,8 +28,14 @@ public class Cliente {
      * true. Caso contrário, false.
      */
     public boolean adicionarConta(Conta conta) {
+        for (Conta c : contas) {
+        	if (c.equals(conta) ) {
+        		return false;
+        	}
+        }
         
-    	return false;
+        contas.add(conta);
+        return true;
     }
 
     /*
@@ -40,8 +46,13 @@ public class Cliente {
      * deve-se retornar true. Caso contrário, false.
      */
     public boolean removerConta(String numeroConta) {
+        Conta conta = localizarConta(numeroConta);
         
-    	return false;
+        if (conta != null) {
+        	contas.remove(conta);
+        	return true;
+        }
+        	return false;
     }
 
     /*
@@ -52,8 +63,12 @@ public class Cliente {
      * 
      */
     public Conta localizarConta(String numeroConta) {
-        
-    	return null;
+        for (Conta c : contas) {
+        	if (c.getNumero().equals(numeroConta) ) {
+        		return c; 
+        	}
+        }
+        return null;
     }
     
 

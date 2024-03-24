@@ -7,7 +7,7 @@ import java.util.Objects;
 /*
  * Programação Orientada a Objetos
  * Milestone 2
- * Discente:
+ * Discente: Emanoel Carvalho
  * 
  */
 public class Conta {
@@ -42,7 +42,7 @@ public class Conta {
         if(isStatus() && valor.compareTo(this.saldo) <= 0) {
         	this.saldo = saldo.subtract(valor); 
         } else {
-			System.out.println("Operação inválida");
+        	throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
 		}
     }
 
@@ -54,7 +54,11 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void depositar(BigDecimal valor) {
-        
+        if (isStatus() && valor.compareTo(BigDecimal.ZERO) > 0) {
+        	this.saldo = saldo.add(valor);
+        } else {
+        	throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
+        }
     }
 
     /*
@@ -67,7 +71,12 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void transferir(Conta destino, BigDecimal valor) {
-        
+        if (this.saldo.compareTo(valor) > 0 && this.isStatus() && destino.isStatus()) {
+        	this.saldo = saldo.subtract(valor);
+        	destino.saldo = destino.saldo.add(valor);
+        } else {
+        	throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
+        }
     }
     
     //Não alterar os métodos abaixo 
